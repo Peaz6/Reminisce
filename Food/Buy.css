@@ -870,3 +870,49 @@ body {
     }
 
 }
+
+/* ==========================================
+   SMALL PHONES
+   (single-column menu, readable prices)
+========================================== */
+
+@media (max-width: 560px) {
+
+    .product-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .product-info {
+        padding: 16px;
+    }
+
+    .product-name {
+        font-size: 20px;
+    }
+
+    .product-desc {
+        font-size: 13px;
+    }
+
+    .product-price {
+        font-size: 1.5rem;
+    }
+
+    .products-section {
+        padding: 50px 16px 16px;
+    }
+
+    .qty-btn {
+        width: 34px;
+        height: 34px;
+
+        font-size: 20px;
+    }
+
+    .qty-count {
+        font-size: 19px;
+    }
+
+}

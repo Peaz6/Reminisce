@@ -144,3 +144,50 @@
     }
 
 }
+
+/* ==========================================
+   SMALL PHONES
+========================================== */
+
+@media (max-width: 560px) {
+
+    .top-nav {
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .logo img {
+        height: 38px;
+        width: 38px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .nav-actions {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+    .user-chip {
+        max-width: 150px;
+
+        font-size: 12px;
+    }
+
+}
