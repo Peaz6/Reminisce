@@ -330,6 +330,7 @@
             var confirmMsg = document.getElementById("confirmMsg");
             var methodInputs = document.querySelectorAll("input[name='method']");
             var addressWrap = document.getElementById("addressWrap");
+            var buyLayout = document.querySelector(".buy-layout");
 
             function toggleAddress() {
                 addressWrap.style.display =
@@ -360,6 +361,10 @@
                     cart[name] = (cart[name] || 0) + 1;
                     count.textContent = cart[name];
                     updateSummary();
+
+                    card.classList.remove("bump");
+                    void card.offsetWidth;
+                    card.classList.add("bump");
                 });
 
             });
@@ -417,6 +422,7 @@
                 summaryTotal.textContent = "Total: " + formatPrice(total);
 
                 cartPanel.classList.toggle("is-hidden", !hasItems);
+                buyLayout.classList.toggle("cart-open", hasItems);
 
             }
 

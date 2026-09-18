@@ -129,6 +129,12 @@ body {
 
     margin: 0 auto;
 
+    padding-right: 0;
+
+    transition: padding-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.buy-layout.cart-open {
     padding-right: 460px;
 }
 
@@ -140,6 +146,10 @@ body {
     gap: 24px;
 
     text-align: left;
+
+    width: 100%;
+
+    transition: grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cart-panel {
@@ -189,11 +199,63 @@ body {
 .product-card {
     background: #ffffff;
 
-    border-radius: 0;
+    border-radius: 14px;
 
     overflow: hidden;
 
     border: 1px solid #e5e0d6;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+
+    opacity: 0;
+
+    transform: translateY(24px);
+
+    animation: card-in 0.5s cubic-bezier(0.2, 0.65, 0.3, 1) forwards;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+
+    border-color: #b8860b;
+}
+
+.product-card:nth-child(1) { animation-delay: 0.05s; }
+.product-card:nth-child(2) { animation-delay: 0.12s; }
+.product-card:nth-child(3) { animation-delay: 0.19s; }
+.product-card:nth-child(4) { animation-delay: 0.26s; }
+.product-card:nth-child(5) { animation-delay: 0.33s; }
+.product-card:nth-child(6) { animation-delay: 0.4s; }
+.product-card:nth-child(7) { animation-delay: 0.47s; }
+.product-card:nth-child(8) { animation-delay: 0.54s; }
+.product-card:nth-child(9) { animation-delay: 0.61s; }
+
+@keyframes card-in {
+    from {
+        opacity: 0;
+
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+.product-card.bump {
+    animation: card-bump 0.35s ease;
+}
+
+@keyframes card-bump {
+    0% { transform: translateY(0) scale(1); }
+    40% { transform: translateY(-8px) scale(1.02); }
+    100% { transform: translateY(0) scale(1); }
 }
 
 .product-image {
@@ -713,7 +775,8 @@ body {
         gap: 16px;
     }
 
-    .buy-layout {
+    .buy-layout,
+    .buy-layout.cart-open {
         padding-right: 0;
     }
 
