@@ -249,13 +249,13 @@ body {
 }
 
 .product-card.bump {
-    animation: card-bump 0.35s ease;
+    animation: card-bump 0.35s ease both;
 }
 
 @keyframes card-bump {
-    0% { transform: translateY(0) scale(1); }
-    40% { transform: translateY(-8px) scale(1.02); }
-    100% { transform: translateY(0) scale(1); }
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    40% { transform: translateY(-8px) scale(1.02); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
 }
 
 .product-image {
