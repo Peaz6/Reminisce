@@ -770,28 +770,6 @@ body {
 
 @media (max-width: 800px) {
 
-    .top-nav {
-        padding: 0 20px;
-        flex-wrap: wrap;
-        height: auto;
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-
-    .nav-links {
-        gap: 14px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .nav-links a {
-        font-size: 12px;
-    }
-
-    .nav-actions {
-        gap: 10px;
-    }
-
     .hero {
         padding: 22px 15px;
     }

@@ -401,28 +401,6 @@ body {
 
 @media (max-width: 800px) {
 
-    .top-nav {
-        padding: 0 20px;
-        flex-wrap: wrap;
-        height: auto;
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-
-    .logo {
-        font-size: 21px;
-    }
-
-    .nav-links {
-        gap: 14px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .nav-links a {
-        font-size: 12px;
-    }
-
     .about-hero h1 {
         font-size: 42px;
     }

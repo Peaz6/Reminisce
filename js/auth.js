@@ -67,7 +67,106 @@
     // Subscribes once on every page so the nav button
     // updates automatically when login state changes.
     function initNavAuth() {
+        initMobileNav();
         renderNav();
+    }
+
+    // Builds the mobile hamburger menu (shared on all pages).
+    // The toggle button + dropdown panel are injected via JS so the
+    // static HTML stays unchanged. Panel content is mirrored from the
+    // real nav each time it opens so login state stays in sync.
+    function initMobileNav() {
+
+        var topNav = document.querySelector(".top-nav");
+
+        if (!topNav) return;
+
+        if (document.querySelector(".nav-toggle")) return;
+
+        // --- toggle button (logo right side) ---
+        var toggle = document.createElement("button");
+
+        toggle.type = "button";
+        toggle.className = "nav-toggle";
+        toggle.setAttribute("aria-label", "Open menu");
+        toggle.setAttribute("aria-expanded", "false");
+
+        toggle.innerHTML =
+            '<span class="toggle-bar"></span>' +
+            '<span class="toggle-bar"></span>' +
+            '<span class="toggle-bar"></span>';
+
+        topNav.appendChild(toggle);
+
+        // --- dropdown panel ---
+        var panel = document.createElement("div");
+        panel.className = "nav-panel";
+
+        var linksBox = document.createElement("div");
+        linksBox.className = "nav-panel-links";
+
+        var divider = document.createElement("div");
+        divider.className = "nav-panel-divider";
+
+        var actionsBox = document.createElement("div");
+        actionsBox.className = "nav-panel-actions";
+
+        panel.appendChild(linksBox);
+        panel.appendChild(divider);
+        panel.appendChild(actionsBox);
+
+        document.body.appendChild(panel);
+
+        function syncPanel() {
+
+            var links = document.querySelector(".nav-links");
+            var actions = document.querySelector(".nav-actions");
+
+            if (links) linksBox.innerHTML = links.innerHTML;
+
+            if (actions) {
+                actionsBox.innerHTML = actions.innerHTML;
+
+                // The logout button inside the panel needs its own handler
+                // (the original lives in the hidden desktop nav).
+                var logoutBtn = actionsBox.querySelector("#logoutBtn");
+
+                if (logoutBtn) {
+                    logoutBtn.addEventListener("click", async function () {
+                        await signOut();
+                        renderNav();
+                        syncPanel();
+                    });
+                }
+            }
+        }
+
+        function setOpen(open) {
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+            panel.classList.toggle("open", open);
+        }
+
+        toggle.addEventListener("click", function (ev) {
+            ev.stopPropagation();
+            syncPanel();
+            setOpen(!panel.classList.contains("open"));
+        });
+
+        document.addEventListener("click", function (ev) {
+            if (!panel.classList.contains("open")) return;
+            if (panel.contains(ev.target) || toggle.contains(ev.target)) return;
+            setOpen(false);
+        });
+
+        document.addEventListener("keydown", function (ev) {
+            if (ev.key === "Escape") setOpen(false);
+        });
+
+        window.addEventListener("resize", function () {
+            if (window.matchMedia("(max-width: 800px)").matches === false) {
+                setOpen(false);
+            }
+        });
     }
 
     async function renderNav() {
