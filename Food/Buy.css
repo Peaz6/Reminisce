@@ -135,7 +135,7 @@ body {
 }
 
 .buy-layout.cart-open {
-    padding-right: 460px;
+    padding-right: 380px;
 }
 
 .product-grid {
@@ -153,7 +153,7 @@ body {
 }
 
 .cart-panel {
-    width: 420px;
+    width: 360px;
 
     position: fixed;
 
