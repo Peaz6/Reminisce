@@ -35,7 +35,9 @@
 
 .logo img {
     height: 44px;
-    width: auto;
+    width: 44px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .nav-links {
