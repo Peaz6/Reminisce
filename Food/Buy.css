@@ -666,6 +666,18 @@ body {
     color: #555555;
 }
 
+.weight-note {
+    flex-basis: 100%;
+
+    margin-top: 6px;
+
+    font-size: 15px;
+
+    color: #666666;
+
+    font-style: italic;
+}
+
 .details-title {
     font-family: Georgia, serif;
 
@@ -966,6 +978,134 @@ body {
 
     .qty-count {
         font-size: 19px;
+    }
+
+}
+
+/* ==========================================
+   CHECKOUT - DESKTOP
+   Two columns (summary | form) that fit
+   in the viewport so no scrolling is needed
+========================================== */
+
+@media (min-width: 1000px) {
+
+    .order-section {
+        max-width: 1150px;
+
+        display: grid;
+
+        grid-template-columns: 370px 1fr;
+
+        gap: 26px;
+
+        align-items: stretch;
+
+        padding: 18px 30px 12px;
+
+        min-height: calc(100vh - 90px);
+    }
+
+    .order-section .section-label {
+        grid-column: 1 / -1;
+
+        margin-bottom: 4px;
+    }
+
+    .order-section > h2 {
+        grid-column: 1 / -1;
+
+        margin-bottom: 12px;
+
+        font-size: 30px;
+    }
+
+    .checkout-summary {
+        margin-bottom: 0;
+
+        padding: 22px 24px;
+    }
+
+    .checkout-summary h3 {
+        font-size: 20px;
+
+        margin-bottom: 10px;
+
+        padding-bottom: 10px;
+    }
+
+    .checkout-summary .summary-line {
+        padding: 5px 0;
+
+        font-size: 15px;
+    }
+
+    .checkout-summary .summary-items {
+        margin-bottom: 4px;
+    }
+
+    .order-form {
+        width: 100%;
+
+        padding: 22px 28px;
+    }
+
+    .order-section .form-group {
+        margin-bottom: 9px;
+    }
+
+    .order-section .form-group label,
+    .order-section .form-group legend {
+        margin-bottom: 4px;
+
+        font-size: 12px;
+    }
+
+    .order-section .form-group input[type="text"],
+    .order-section .form-group input[type="tel"],
+    .order-section .form-group input[type="email"],
+    .order-section .form-group textarea {
+        padding: 8px 11px;
+
+        font-size: 14px;
+    }
+
+    .order-section textarea#notes {
+        height: 42px;
+    }
+
+    .order-section .method-group {
+        gap: 9px;
+
+        margin-bottom: 10px;
+    }
+
+    .order-section .method-option {
+        padding: 8px 11px;
+    }
+
+    .order-section .method-option strong {
+        font-size: 13px;
+    }
+
+    .order-section .weight-note {
+        margin-top: 1px;
+    }
+
+    .order-section .details-title {
+        margin: 10px 0 12px;
+
+        padding-top: 12px;
+    }
+
+    .order-section .place-order-btn {
+        margin-top: 14px;
+    }
+
+    .checkout-empty {
+        grid-column: 1 / -1;
+
+        margin-top: 6px;
     }
 
 }
