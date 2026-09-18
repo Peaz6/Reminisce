@@ -96,7 +96,7 @@ body {
 ========================================== */
 
 .products-section {
-    max-width: 1200px;
+    max-width: 1300px;
 
     margin: 0 auto;
 
@@ -125,7 +125,7 @@ body {
 }
 
 .buy-layout {
-    max-width: 1230px;
+    max-width: 1330px;
 
     margin: 0 auto;
 
@@ -217,11 +217,7 @@ body {
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
-
-    border-color: #b8860b;
+    transform: none;
 }
 
 .product-card:nth-child(1) { animation-delay: 0.05s; }
@@ -364,6 +360,85 @@ body {
     font-size: 18px;
 
     font-weight: 800;
+}
+
+/* ==========================================
+   ADD-TO-CART CONTROLS (menu cards)
+   "Add" button morphs into a − / count / + pill
+========================================== */
+
+.add-controls {
+    margin-top: 14px;
+}
+
+.add-controls .add-btn {
+    width: 100%;
+
+    padding: 12px 16px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #b8860b;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease, transform 0.15s ease;
+
+    animation: controls-in 0.25s ease;
+}
+
+.add-controls .add-btn:hover {
+    background: #d19b16;
+}
+
+.add-controls .add-btn:active {
+    transform: scale(0.98);
+}
+
+.add-controls .qty-controls {
+    display: none;
+}
+
+.add-controls.has-items .add-btn {
+    display: none;
+}
+
+.add-controls.has-items .qty-controls {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+
+    padding: 6px 10px;
+
+    border-radius: 10px;
+
+    background: #f6f1e2;
+
+    border: 1px solid #e0d9c6;
+
+    animation: controls-in 0.25s ease;
+}
+
+@keyframes controls-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 

@@ -91,7 +91,7 @@
 
         <div class="product-grid">
 
-            <div class="product-card" data-name="Mohinga" data-price="15000">
+            <div class="product-card" data-name="Mohinga" data-price="20000">
                 <div class="product-image">
                     <img src="../Images/Mohinga.jpg" alt="Mohinga">
                 </div>
@@ -99,17 +99,20 @@
                     <h3 class="product-name">Mohinga</h3>
                     <p class="product-desc">Fish Noodle Soup</p>
                     <div class="product-price-row">
-                        <p class="product-price">15,000 MMK</p>
+                        <p class="product-price">20,000 MMK</p>
+                    </div>
+                    <div class="add-controls">
+                        <button type="button" class="add-btn">Add</button>
                         <div class="qty-controls">
-                            <button class="qty-btn minus" data-action="minus">−</button>
+                            <button type="button" class="qty-btn minus" data-action="minus">−</button>
                             <span class="qty-count">0</span>
-                            <button class="qty-btn plus" data-action="plus">+</button>
+                            <button type="button" class="qty-btn plus" data-action="plus">+</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card" data-name="Si Lone Tea" data-price="6000">
+            <div class="product-card" data-name="Si Lone Tea" data-price="15000">
                 <div class="product-image">
                     <img src="../Images/si-lone-tea.jpg" alt="Si Lone Tea">
                 </div>
@@ -117,17 +120,20 @@
                     <h3 class="product-name">Si Lone Tea</h3>
                     <p class="product-desc">Coconut Noodle Soup</p>
                     <div class="product-price-row">
-                        <p class="product-price">6,000 MMK</p>
+                        <p class="product-price">15,000 MMK</p>
+                    </div>
+                    <div class="add-controls">
+                        <button type="button" class="add-btn">Add</button>
                         <div class="qty-controls">
-                            <button class="qty-btn minus" data-action="minus">−</button>
+                            <button type="button" class="qty-btn minus" data-action="minus">−</button>
                             <span class="qty-count">0</span>
-                            <button class="qty-btn plus" data-action="plus">+</button>
+                            <button type="button" class="qty-btn plus" data-action="plus">+</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card" data-name="Ohn No Kouk Swe" data-price="20000">
+            <div class="product-card" data-name="Ohn No Kouk Swe" data-price="25000">
                 <div class="product-image">
                     <img src="../Images/Ohn No Kouk Swe.jpg" alt="Ohn No Kouk Swe">
                 </div>
@@ -135,17 +141,20 @@
                     <h3 class="product-name">Ohn No Kouk Swe</h3>
                     <p class="product-desc">Chicken Coconut Noodles</p>
                     <div class="product-price-row">
-                        <p class="product-price">20,000 MMK</p>
+                        <p class="product-price">25,000 MMK</p>
+                    </div>
+                    <div class="add-controls">
+                        <button type="button" class="add-btn">Add</button>
                         <div class="qty-controls">
-                            <button class="qty-btn minus" data-action="minus">−</button>
+                            <button type="button" class="qty-btn minus" data-action="minus">−</button>
                             <span class="qty-count">0</span>
-                            <button class="qty-btn plus" data-action="plus">+</button>
+                            <button type="button" class="qty-btn plus" data-action="plus">+</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card" data-name="Mont Latt Saung" data-price="5000">
+            <div class="product-card" data-name="Mont Latt Saung" data-price="10000">
                 <div class="product-image">
                     <img src="../Images/mont-latt-saung.jpg" alt="Mont Latt Saung">
                 </div>
@@ -153,11 +162,14 @@
                     <h3 class="product-name">Mont Latt Saung</h3>
                     <p class="product-desc">Layered Semolina Cake</p>
                     <div class="product-price-row">
-                        <p class="product-price">5,000 MMK</p>
+                        <p class="product-price">10,000 MMK</p>
+                    </div>
+                    <div class="add-controls">
+                        <button type="button" class="add-btn">Add</button>
                         <div class="qty-controls">
-                            <button class="qty-btn minus" data-action="minus">−</button>
+                            <button type="button" class="qty-btn minus" data-action="minus">−</button>
                             <span class="qty-count">0</span>
-                            <button class="qty-btn plus" data-action="plus">+</button>
+                            <button type="button" class="qty-btn plus" data-action="plus">+</button>
                         </div>
                     </div>
                 </div>
@@ -239,11 +251,33 @@
                 var count = card.querySelector(".qty-count");
                 var minus = card.querySelector(".minus");
                 var plus = card.querySelector(".plus");
+                var addBtn = card.querySelector(".add-btn");
+                var addControls = card.querySelector(".add-controls");
+
+                // Shows the stepper pill once qty > 0; reverts to "Add" at 0
+                function refreshControls() {
+                    addControls.classList.toggle("has-items", (cart[name] || 0) > 0);
+                }
+
+                function bump() {
+                    card.classList.remove("bump");
+                    void card.offsetWidth;
+                    card.classList.add("bump");
+                }
+
+                addBtn.addEventListener("click", function () {
+                    cart[name] = (cart[name] || 0) + 1;
+                    count.textContent = cart[name];
+                    refreshControls();
+                    updateSummary();
+                    bump();
+                });
 
                 minus.addEventListener("click", function () {
                     if ((cart[name] || 0) > 0) {
                         cart[name] = cart[name] - 1;
                         count.textContent = cart[name];
+                        refreshControls();
                         updateSummary();
                     }
                 });
@@ -251,11 +285,9 @@
                 plus.addEventListener("click", function () {
                     cart[name] = (cart[name] || 0) + 1;
                     count.textContent = cart[name];
+                    refreshControls();
                     updateSummary();
-
-                    card.classList.remove("bump");
-                    void card.offsetWidth;
-                    card.classList.add("bump");
+                    bump();
                 });
 
             });
