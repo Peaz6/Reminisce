@@ -22,11 +22,20 @@
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
     font-family: Georgia, serif;
     font-size: 28px;
     font-weight: bold;
     letter-spacing: 1px;
     white-space: nowrap;
+}
+
+.logo img {
+    height: 44px;
+    width: auto;
 }
 
 .nav-links {
