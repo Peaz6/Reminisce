@@ -14,6 +14,8 @@
 
     <link rel="stylesheet" href="Tutorial.css">
 
+    <script src="../js/auth.js"></script>
+
 </head>
 
 
@@ -47,7 +49,7 @@
 
         <div class="nav-actions">
 
-            <a href="#" class="login-btn">Log In</a>
+            <a href="../login.html" class="login-btn">Log In</a>
 
         </div>
 
@@ -55,150 +57,11 @@
 
 
     <!-- ==========================================
-         HOW TO USE HERO (PLACEHOLDER)
+         BLANK PAGE BODY
+         Tutorial content goes here later
     ========================================== -->
 
-    <section class="how-hero">
-
-        <p class="section-label">
-            GETTING STARTED
-        </p>
-
-        <h1>
-            Tutorial
-        </h1>
-
-        <p class="hero-description">
-            This page explains how to browse the menu, place an order, and receive your food.
-
-            Placeholder text — replace with your final wording.
-        </p>
-
-    </section>
-
-
-    <!-- ==========================================
-         STEP-BY-STEP GUIDE (PLACEHOLDER)
-    ========================================== -->
-
-    <section class="guide">
-
-        <div class="guide-item">
-
-            <span class="step-number">
-                1
-            </span>
-
-            <div class="guide-text">
-
-                <h2>
-                    Step One — Browse the Menu
-                </h2>
-
-                <p>
-                    Visit the Food page to see our dishes.
-
-                    Placeholder text describing how to browse the menu.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="guide-item">
-
-            <span class="step-number">
-                2
-            </span>
-
-            <div class="guide-text">
-
-                <h2>
-                    Step Two — Add Items to Your Order
-                </h2>
-
-                <p>
-                    Open the Order Now page and add dishes to your cart.
-
-                    Placeholder text describing how to add items.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="guide-item">
-
-            <span class="step-number">
-                3
-            </span>
-
-            <div class="guide-text">
-
-                <h2>
-                    Step Three — Check Out
-                </h2>
-
-                <p>
-                    Review your cart and continue to check out.
-
-                    Placeholder text describing the payment and delivery steps.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==========================================
-         FREQUENTLY ASKED QUESTIONS (PLACEHOLDER)
-    ========================================== -->
-
-    <section class="faq">
-
-        <h2>
-            Frequently Asked Questions
-        </h2>
-
-        <div class="faq-item">
-
-            <h3>
-                How long does delivery take?
-            </h3>
-
-            <p>
-                Placeholder answer.
-            </p>
-
-        </div>
-
-        <div class="faq-item">
-
-            <h3>
-                What payment methods do you accept?
-            </h3>
-
-            <p>
-                Placeholder answer.
-            </p>
-
-        </div>
-
-        <div class="faq-item">
-
-            <h3>
-                How do I contact support?
-            </h3>
-
-            <p>
-                Placeholder answer.
-            </p>
-
-        </div>
-
-    </section>
+    <main class="tutorial-blank"></main>
 
 
     <!-- ==========================================
@@ -207,12 +70,31 @@
 
     <footer class="site-footer">
 
-        <p>
-            Reminisce &copy; 2024
-        </p>
+        <div class="footer-content">
+
+            <h2>
+                Contact Us
+            </h2>
+
+            <p>
+                Phone Number: 099249245701
+            </p>
+
+            <p>Our Email: <a href="mailto:reminiscefoodkit@gmail.com">reminiscefoodkit@gmail.com</a></p>
+
+            <p>
+                Discover the traditions, culture and heritage of Myanmar.
+            </p>
+
+        </div>
 
     </footer>
 
+    <script>
+        if (window.ReminisceAuth) {
+            window.ReminisceAuth.initNavAuth();
+        }
+    </script>
 
 </body>
 

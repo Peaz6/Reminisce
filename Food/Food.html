@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="../nav.css">
     <link rel="stylesheet" href="Food.css">
+
+    <script src="../js/auth.js"></script>
 </head>
 
 <body>
@@ -40,7 +42,7 @@
 
         <div class="nav-actions">
 
-            <a href="#" class="login-btn">Log In</a>
+            <a href="../login.html" class="login-btn">Log In</a>
 
         </div>
 
@@ -63,11 +65,6 @@
             <h1>
                 Taste Myanmar from the comforts of your home!
             </h1>
-
-            <p class="hero-description">
-                Discover 100+ traditional dishes,
-                snacks and drinks from Myanmar.
-            </p>
 
             <a href="#dishes" class="hero-button">
                 EXPLORE OUR FOOD
@@ -251,7 +248,7 @@
         </p>
 
             <h2>
-                Contact Us.
+                Contact Us
             </h2>
 
             <p>
@@ -259,11 +256,7 @@
             </p>
 
             
-            <p>Our Email:</p>
-
-            <p>
-                <a href="mailto:reminiscefoodkit@gmail.com">reminiscefoodkit@gmail.com</a>
-            </p>
+            <p>Our Email: <a href="mailto:reminiscefoodkit@gmail.com">reminiscefoodkit@gmail.com</a></p>
 
     
 
@@ -272,28 +265,17 @@
             of Myanmar.
         </p>
 
-        <div class="footer-links">
-
-            <a href="../index.html">
-                Home
-            </a>
-
-            <a href="#food">
-                Food
-            </a>
-
-            <a href="AboutUs.html">
-                About Us
-            </a>
-
-        </div>
-
         <p class="copyright">
             © 2026 Reminisce
         </p>
 
     </footer>
 
+    <script>
+        if (window.ReminisceAuth) {
+            window.ReminisceAuth.initNavAuth();
+        }
+    </script>
 
 </body>
 

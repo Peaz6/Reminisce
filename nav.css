@@ -74,6 +74,27 @@
     gap: 16px;
 }
 
+.nav-actions button.login-btn {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.user-chip {
+    display: inline-block;
+    max-width: 190px;
+    padding: 8px 14px;
+    border: 1px solid #b8860b;
+    border-radius: 8px;
+    background: #fdf6e3;
+    color: #7a5a12;
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .login-btn {
     display: inline-block;
 

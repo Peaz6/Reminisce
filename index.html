@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="style.css">
+
+    <script src="js/auth.js"></script>
 </head>
 
 
@@ -41,7 +43,7 @@
 
         <div class="nav-actions">
 
-            <a href="#" class="login-btn">Log In</a>
+            <a href="login.html" class="login-btn">Log In</a>
 
         </div>
 
@@ -178,7 +180,7 @@
         <div class="footer-content">
 
             <h2>
-                Contact Us.
+                Contact Us
             </h2>
 
             <p>
@@ -186,30 +188,12 @@
             </p>
 
             
-            <p>Our Email:</p>
-
-            <p>
-                <a href="mailto:reminiscefoodkit@gmail.com">reminiscefoodkit@gmail.com</a>
-            </p>
+            <p>Our Email: <a href="mailto:reminiscefoodkit@gmail.com">reminiscefoodkit@gmail.com</a></p>
 
             <p>
                 Discover the traditions, culture and heritage of Myanmar.
             </p>
 
-
-            <div class="footer-links">
-
-                <a href="index.html">Home</a>
-
-                <a href="Food/Food.html">
-                    Food
-                </a>
-
-                <a href="Food/AboutUs.html">
-                    About Us
-                </a>
-
-            </div>
 
         </div>
 
@@ -222,6 +206,11 @@
     ================================================== -->
 
     <script>
+
+        // Initialize nav auth state (Log In / user chip / Log Out)
+        if (window.ReminisceAuth) {
+            window.ReminisceAuth.initNavAuth();
+        }
 
         const banner =
             document.getElementById("heroBanner");

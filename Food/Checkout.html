@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Details - Reminisce</title>
+
+    <link rel="stylesheet" href="../nav.css">
+    <link rel="stylesheet" href="Buy.css">
+
+    <script src="../js/auth.js"></script>
+</head>
+
+<body>
+
+    <!-- ==============================
+         NAVIGATION
+    ============================== -->
+
+    <header class="top-nav">
+
+        <div class="logo">
+            <img src="../Images/logo.jpg" alt="Reminisce logo">
+            Reminisce
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="../index.html">Home</a>
+
+            <a href="Food.html">Food</a>
+
+            <a href="Buy.html" class="active">Order Now</a>
+
+            <a href="Tutorial.html">Tutorial</a>
+
+            <a href="AboutUs.html">About Us</a>
+
+        </nav>
+
+        <div class="nav-actions">
+
+            <a href="../login.html" class="login-btn">Log In</a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==============================
+         ORDER DETAILS
+    ============================== -->
+
+    <section class="order-section" id="orderSection">
+
+        <p class="section-label">
+            COMPLETE YOUR ORDER
+        </p>
+
+        <h2>
+            Order Details
+        </h2>
+
+        <!-- CART SUMMARY -->
+
+        <div class="checkout-summary">
+
+            <h3 class="details-title">
+                Your Order
+            </h3>
+
+            <div class="summary-items" id="summaryItems">
+                <p class="empty-msg">No items added yet.</p>
+            </div>
+
+            <div class="summary-total" id="summaryTotal">Total: 0 MMK</div>
+
+        </div>
+
+        <form
+            id="orderForm"
+            class="order-form"
+            novalidate
+        >
+
+            <!-- DELIVERY METHOD -->
+
+            <fieldset class="form-group method-group">
+
+                <legend>How do you want it?</legend>
+
+                <label class="method-option">
+                    <input type="radio" name="method" value="ship" checked>
+                    <span>
+                        <strong>Order &amp; Ship</strong>
+                        Delivered to your door
+                    </span>
+                </label>
+
+                <label class="method-option">
+                    <input type="radio" name="method" value="pickup">
+                    <span>
+                        <strong>Pickup</strong>
+                        Pick up at our shop
+                    </span>
+                </label>
+
+            </fieldset>
+
+            <!-- CONTACT DETAILS -->
+
+            <h3 class="details-title">
+                Your Details
+            </h3>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input id="fullName" name="fullName" type="text" placeholder="e.g. Maung Ba" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" name="phone" type="tel" placeholder="e.g. +95 9 1234 5678" required>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group" id="addressWrap">
+                <label for="address">Shipping Address</label>
+                <input id="address" name="address" type="text" placeholder="Street, City, Postal Code">
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Special Instructions (Optional)</label>
+                <textarea id="notes" name="notes" rows="3"></textarea>
+            </div>
+
+            <!-- ORDER SUMMARY -->
+
+            <button type="submit" class="place-order-btn">
+                Place Order
+            </button>
+
+            <p class="confirm-msg" id="confirmMsg"></p>
+
+        </form>
+
+        <!-- EMPTY CART (shown when nothing was added) -->
+
+        <div class="checkout-empty is-hidden" id="emptyWrap">
+            <p>Your cart is empty.</p>
+            <a href="Buy.html" class="place-order-btn" style="text-decoration:none; display:inline-block;">
+                Back to Menu
+            </a>
+        </div>
+
+    </section>
+
+
+
+    <!-- ==============================
+         FOOTER
+    ============================== -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <p class="footer-logo">Reminisce</p>
+
+            <h2>Contact Us</h2>
+
+            <p>Phone Number: 099249245701</p>
+
+            <p>
+                Our Email:
+                <a href="mailto:reminiscefoodkit@gmail.com">
+                    reminiscefoodkit@gmail.com
+                </a>
+            </p>
+
+            <p class="copyright">&copy; 2026 Reminisce</p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- ==============================
+         CHECKOUT LOGIC
+    ============================== -->
+
+    <script>
+
+        (function () {
+
+            var CART_STORAGE_KEY = "reminisce_cart";
+
+            var form = document.getElementById("orderForm");
+            var summaryItems = document.getElementById("summaryItems");
+            var summaryTotal = document.getElementById("summaryTotal");
+            var confirmMsg = document.getElementById("confirmMsg");
+            var emptyWrap = document.getElementById("emptyWrap");
+            var methodInputs = document.querySelectorAll("input[name='method']");
+            var addressWrap = document.getElementById("addressWrap");
+            var orderSection = document.getElementById("orderSection");
+
+            var cart = [];
+
+            // ---------- LOAD CART ----------
+
+            try {
+                cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
+            }
+            catch (e) {
+                cart = [];
+            }
+
+            if (!Array.isArray(cart)) cart = [];
+
+            function formatPrice(n) {
+                return n.toLocaleString("en-US") + " MMK";
+            }
+
+            function cartTotalQty() {
+                return cart.reduce(function (sum, item) { return sum + (item.qty || 0); }, 0);
+            }
+
+            function renderSummary() {
+
+                var html = "";
+                var total = 0;
+
+                cart.forEach(function (item) {
+
+                    var line = item.price * item.qty;
+                    total += line;
+
+                    html +=
+                        '<div class="summary-line">' +
+                            '<span>' + item.name + ' &times; ' + item.qty + '</span>' +
+                            '<span class="line-price">' + formatPrice(line) + '</span>' +
+                        '</div>';
+                });
+
+                summaryItems.innerHTML = html;
+                summaryTotal.textContent = "Total: " + formatPrice(total);
+            }
+
+            // ---------- METHOD / ADDRESS TOGGLE ----------
+
+            function toggleAddress() {
+                addressWrap.style.display =
+                    methodInputs[0].checked ? "block" : "none";
+            }
+
+            methodInputs.forEach(function (input) {
+                input.addEventListener("change", toggleAddress);
+            });
+
+            // ---------- EMPTY CART HANDLING ----------
+
+            if (cartTotalQty() === 0) {
+
+                form.classList.add("is-hidden");
+                emptyWrap.classList.remove("is-hidden");
+                orderSection.querySelector("h2").textContent = "Order Details";
+
+                // --- AUTH NAV STATE ---
+                if (window.ReminisceAuth) {
+                    window.ReminisceAuth.initNavAuth();
+                }
+
+                return;
+            }
+
+            renderSummary();
+
+            // ---------- SUBMIT ----------
+
+            form.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                if (cartTotalQty() === 0) {
+
+                    confirmMsg.textContent =
+                        "Please add at least one item to your order.";
+                    confirmMsg.style.color = "#b00020";
+                    return;
+                }
+
+                if (!form.checkValidity()) {
+
+                    confirmMsg.textContent =
+                        "Please fill in all required order details.";
+                    confirmMsg.style.color = "#b00020";
+                    return;
+                }
+
+                var method =
+                    methodInputs[0].checked ? "Order & Ship" : "Pickup";
+
+                var methodText =
+                    methodInputs[0].checked
+                        ? "will be shipped to your address"
+                        : "will be ready for pickup";
+
+                confirmMsg.textContent =
+                    "Thank you! Your order of " + cartTotalQty() +
+                    " item" + (cartTotalQty() > 1 ? "s" : "") +
+                    " " + methodText +
+                    ". We will contact you shortly!";
+                confirmMsg.style.color = "#2e6b2e";
+
+                // Order placed - clear the saved cart
+                localStorage.removeItem(CART_STORAGE_KEY);
+                cart = [];
+
+                form.reset();
+                methodInputs[0].checked = true;
+                toggleAddress();
+            });
+
+            // ---------- LOGGED-IN USER PRE-FILL ----------
+            // If the visitor has an account, pre-fill the order
+            // details from their stored profile.
+            if (window.ReminisceAuth) {
+
+                window.ReminisceAuth.initNavAuth();
+
+                window.ReminisceAuth.getProfile().then(function (profile) {
+
+                    if (!profile) return;
+
+                    var nameInput = document.getElementById("fullName");
+                    var phoneInput = document.getElementById("phone");
+                    var emailInput = document.getElementById("email");
+
+                    if (profile.full_name && nameInput) nameInput.value = profile.full_name;
+                    if (profile.phone && phoneInput) phoneInput.value = profile.phone;
+                    if (profile.email && emailInput) emailInput.value = profile.email;
+
+                });
+            }
+
+            toggleAddress();
+
+        })();
+
+    </script>
+
+</body>
+
+</html>

@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="../nav.css">
     <link rel="stylesheet" href="Buy.css">
+
+    <script src="../js/auth.js"></script>
 </head>
 
 <body>
@@ -40,7 +42,7 @@
 
         <div class="nav-actions">
 
-            <a href="#" class="login-btn">Log In</a>
+            <a href="../login.html" class="login-btn">Log In</a>
 
         </div>
 
@@ -89,7 +91,7 @@
 
         <div class="product-grid">
 
-            <div class="product-card" data-name="Mohinga" data-price="1500">
+            <div class="product-card" data-name="Mohinga" data-price="20000">
                 <div class="product-image">
                     <img src="../Images/Mohinga.jpg" alt="Mohinga">
                 </div>
@@ -97,7 +99,7 @@
                     <h3 class="product-name">Mohinga</h3>
                     <p class="product-desc">Fish Noodle Soup</p>
                     <div class="product-price-row">
-                        <p class="product-price">1,500 MMK</p>
+                        <p class="product-price">20,000 MMK</p>
                         <div class="qty-controls">
                             <button class="qty-btn minus" data-action="minus">−</button>
                             <span class="qty-count">0</span>
@@ -143,7 +145,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-name="Mont Latt Saung" data-price="1500">
+            <div class="product-card" data-name="Mont Latt Saung" data-price="5000">
                 <div class="product-image">
                     <img src="../Images/mont-latt-saung.jpg" alt="Mont Latt Saung">
                 </div>
@@ -151,7 +153,7 @@
                     <h3 class="product-name">Mont Latt Saung</h3>
                     <p class="product-desc">Layered Semolina Cake</p>
                     <div class="product-price-row">
-                        <p class="product-price">1,500 MMK</p>
+                        <p class="product-price">5,000 MMK</p>
                         <div class="qty-controls">
                             <button class="qty-btn minus" data-action="minus">−</button>
                             <span class="qty-count">0</span>
@@ -186,99 +188,6 @@
 
 
     <!-- ==============================
-         ORDER FORM
-    ============================== -->
-
-    <section class="order-section is-hidden" id="orderSection">
-
-        <p class="section-label">
-            COMPLETE YOUR ORDER
-        </p>
-
-        <h2>
-            Order Details
-        </h2>
-
-        <form
-            id="orderForm"
-            class="order-form"
-            novalidate
-        >
-
-            <!-- DELIVERY METHOD -->
-
-            <fieldset class="form-group method-group">
-
-                <legend>How do you want it?</legend>
-
-                <label class="method-option">
-                    <input type="radio" name="method" value="ship" checked>
-                    <span>
-                        <strong>Order &amp; Ship</strong>
-                        Delivered to your door
-                    </span>
-                </label>
-
-                <label class="method-option">
-                    <input type="radio" name="method" value="pickup">
-                    <span>
-                        <strong>Pickup</strong>
-                        Pick up at our shop
-                    </span>
-                </label>
-
-            </fieldset>
-
-            <!-- CONTACT DETAILS -->
-
-            <h3 class="details-title">
-                Your Details
-            </h3>
-
-            <div class="form-row">
-
-                <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input id="fullName" name="fullName" type="text" placeholder="e.g. Maung Ba" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input id="phone" name="phone" type="tel" placeholder="e.g. +95 9 1234 5678" required>
-                </div>
-
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@example.com" required>
-            </div>
-
-            <div class="form-group" id="addressWrap">
-                <label for="address">Shipping Address</label>
-                <input id="address" name="address" type="text" placeholder="Street, City, Postal Code">
-            </div>
-
-            <div class="form-group">
-                <label for="notes">Special Instructions (Optional)</label>
-                <textarea id="notes" name="notes" rows="3" placeholder="Allergies, spice level, gift note..."></textarea>
-            </div>
-
-            <!-- ORDER SUMMARY -->
-
-            <button type="submit" class="place-order-btn">
-                Place Order
-            </button>
-
-            <p class="confirm-msg" id="confirmMsg"></p>
-
-        </form>
-
-    </section>
-
-
-
-    <!-- ==============================
          FOOTER
     ============================== -->
 
@@ -288,7 +197,7 @@
 
             <p class="footer-logo">Reminisce</p>
 
-            <h2>Contact Us.</h2>
+            <h2>Contact Us</h2>
 
             <p>Phone Number: 099249245701</p>
 
@@ -298,13 +207,6 @@
                     reminiscefoodkit@gmail.com
                 </a>
             </p>
-
-            <div class="footer-links">
-                <a href="../index.html">Home</a>
-                <a href="../Food/Food.html">Food</a>
-                <a href="../Food/Buy.html">Order Now</a>
-                <a href="../Food/AboutUs.html">About Us</a>
-            </div>
 
             <p class="copyright">&copy; 2026 Reminisce</p>
 
@@ -323,23 +225,12 @@
         (function () {
 
             var cart = {};
-            var form = document.getElementById("orderForm");
             var summaryItems = document.getElementById("summaryItems");
             var summaryTotal = document.getElementById("summaryTotal");
             var cartPanel = document.getElementById("cartPanel");
-            var confirmMsg = document.getElementById("confirmMsg");
-            var methodInputs = document.querySelectorAll("input[name='method']");
-            var addressWrap = document.getElementById("addressWrap");
             var buyLayout = document.querySelector(".buy-layout");
 
-            function toggleAddress() {
-                addressWrap.style.display =
-                    methodInputs[0].checked ? "block" : "none";
-            }
-
-            methodInputs.forEach(function (input) {
-                input.addEventListener("change", toggleAddress);
-            });
+            var CART_STORAGE_KEY = "reminisce_cart";
 
             document.querySelectorAll(".product-card").forEach(function (card) {
 
@@ -373,16 +264,24 @@
                 return n.toLocaleString("en-US") + " MMK";
             }
 
-            function cartTotalQty() {
+            // Save the non-empty cart lines so the Checkout page can read them
+            function saveCart() {
 
-                var totalQty = 0;
+                var items = [];
 
-                Object.keys(cart).forEach(function (k) {
-                    totalQty += cart[k] || 0;
+                document.querySelectorAll(".product-card").forEach(function (card) {
+
+                    var name = card.dataset.name;
+                    var price = parseInt(card.dataset.price, 10);
+                    var qty = cart[name] || 0;
+
+                    if (qty > 0) {
+                        items.push({ name: name, price: price, qty: qty });
+                    }
+
                 });
 
-                return totalQty;
-
+                localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
             }
 
             function updateSummary() {
@@ -428,74 +327,20 @@
 
             document.getElementById("proceedBtn").addEventListener("click", function () {
 
-                var orderSection = document.getElementById("orderSection");
+                saveCart();
 
-                orderSection.classList.remove("is-hidden");
-
-                orderSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                window.location.href = "Checkout.html";
 
             });
 
-            form.addEventListener("submit", function (event) {
+            // ---------- AUTH NAV STATE ----------
+            if (window.ReminisceAuth) {
+                window.ReminisceAuth.initNavAuth();
+            }
 
-                event.preventDefault();
-
-                var totalQty = 0;
-
-                Object.keys(cart).forEach(function (k) {
-                    totalQty += cart[k] || 0;
-                });
-
-                if (totalQty === 0) {
-
-                    confirmMsg.textContent =
-                        "Please add at least one item to your order.";
-                    confirmMsg.style.color = "#b00020";
-                    return;
-
-                }
-
-                if (!form.checkValidity()) {
-
-                    confirmMsg.textContent =
-                        "Please fill in all required order details.";
-                    confirmMsg.style.color = "#b00020";
-                    return;
-
-                }
-
-                var method =
-                    methodInputs[0].checked ? "Order & Ship" : "Pickup";
-
-                var methodText =
-                    methodInputs[0].checked
-                        ? "will be shipped to your address"
-                        : "will be ready for pickup";
-
-                confirmMsg.textContent =
-                    "Thank you! Your order of " + totalQty +
-                    " item" + (totalQty > 1 ? "s" : "") +
-                    " " + methodText +
-                    ". We will contact you shortly!";
-                confirmMsg.style.color = "#2e6b2e";
-
-                cart = {};
-                document.querySelectorAll(".qty-count").forEach(function (el) {
-                    el.textContent = "0";
-                });
-
-                form.reset();
-                methodInputs[0].checked = true;
-                toggleAddress();
-                updateSummary();
-
-            });
-
-            toggleAddress();
             updateSummary();
 
         })();
-
     </script>
 
 </body>

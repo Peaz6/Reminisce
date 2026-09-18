@@ -1,0 +1,14 @@
+{
+  "name": "reminisce",
+  "version": "1.0.0",
+  "description": "Reminisce - Burmese food & culture website",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "test": "node --check server.js && node --check js/auth.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

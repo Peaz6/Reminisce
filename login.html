@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Log In - Reminisce</title>
+
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="login.css">
+
+    <!-- Supabase JS (CDN) -->
+    <script src="js/auth.js"></script>
+
+</head>
+
+<body>
+
+    <!-- ==============================
+         NAVIGATION
+    ============================== -->
+
+    <header class="top-nav">
+
+        <div class="logo">
+            <img src="Images/logo.jpg" alt="Reminisce logo">
+            Reminisce
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="Food/Food.html">Food</a>
+
+            <a href="Food/Buy.html">Order Now</a>
+
+            <a href="Food/Tutorial.html">Tutorial</a>
+
+            <a href="Food/AboutUs.html">About Us</a>
+
+        </nav>
+
+        <div class="nav-actions">
+            <a href="login.html" class="login-btn">Log In</a>
+        </div>
+
+    </header>
+
+
+
+    <!-- ==============================
+         AUTH CARD
+    ============================== -->
+
+    <main class="auth-wrap">
+
+        <div class="auth-card">
+
+            <h1 class="auth-title">Reminisce</h1>
+            <p class="auth-subtitle">Taste of home.</p>
+
+            <!-- Tab Switch -->
+            <div class="auth-tabs">
+                <button type="button" class="tab-btn is-active" id="tabLogin">
+                    Log In
+                </button>
+                <button type="button" class="tab-btn" id="tabSignup">
+                    Sign Up
+                </button>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <form class="auth-form" id="loginForm" novalidate>
+
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input id="loginEmail" name="email" type="email"
+                           placeholder="you@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input id="loginPassword" name="password" type="password"
+                           placeholder="Your password" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="auth-btn" id="loginSubmitBtn">
+                    Log In
+                </button>
+
+                <p class="auth-msg" id="loginMsg"></p>
+
+                <p class="auth-switch">
+                    No account yet?
+                    <a href="#" id="switchToSignup">Create one</a>
+                </p>
+
+            </form>
+
+            <!-- SIGNUP FORM -->
+            <form class="auth-form is-hidden" id="signupForm" novalidate>
+
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input id="signupName" name="fullName" type="text"
+                           placeholder="e.g. Maung Ba" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input id="signupEmail" name="email" type="email"
+                           placeholder="you@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupPhone">Phone Number</label>
+                    <input id="signupPhone" name="phone" type="tel"
+                           placeholder="+95 9 1234 5678">
+                </div>
+
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input id="signupPassword" name="password" type="password"
+                           placeholder="At least 6 characters" required
+                           minlength="6" autocomplete="new-password">
+                </div>
+
+                <button type="submit" class="auth-btn" id="signupSubmitBtn">
+                    Sign Up
+                </button>
+
+                <p class="auth-msg" id="signupMsg"></p>
+
+                <p class="auth-switch">
+                    Already have an account?
+                    <a href="#" id="switchToLogin">Log in</a>
+                </p>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ==============================
+         FOOTER
+    ============================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-content">
+
+            <h2>Contact Us</h2>
+
+            <p>Phone Number: 099249245701</p>
+
+            <p>
+                Our Email:
+<a href="mailto:reminiscefoodkit@gmail.com">
+                    reminiscencefoodkit@gmail.com
+                </a>
+            </p>
+
+            <p class="copyright">&copy; 2026 Reminisce</p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- ==============================
+         AUTH LOGIC
+    ============================== -->
+
+    <script>
+
+        (function () {
+
+            var loginForm  = document.getElementById("loginForm");
+            var signupForm = document.getElementById("signupForm");
+            var loginMsg   = document.getElementById("loginMsg");
+            var signupMsg  = document.getElementById("signupMsg");
+
+            var tabLogin  = document.getElementById("tabLogin");
+            var tabSignup = document.getElementById("tabSignup");
+
+            var switchToSignup = document.getElementById("switchToSignup");
+            var switchToLogin  = document.getElementById("switchToLogin");
+
+            function showMsg(el, text, isError) {
+                el.textContent = text;
+                el.classList.toggle("msg-error", !!isError);
+                el.classList.toggle("msg-ok", !isError);
+                el.style.visibility = "visible";
+            }
+
+            function setBusy(btn, busy) {
+                btn.disabled = busy;
+                btn.textContent = busy ? "Please wait..." : btn.dataset.orig;
+            }
+
+            function switchTab(showLogin) {
+                showLogin = showLogin !== false;
+                loginForm.classList.toggle("is-hidden", !showLogin);
+                signupForm.classList.toggle("is-hidden", showLogin);
+                tabLogin.classList.toggle("is-active", showLogin);
+                tabSignup.classList.toggle("is-active", !showLogin);
+                loginMsg.style.visibility = "hidden";
+                signupMsg.style.visibility = "hidden";
+            }
+
+            tabLogin.addEventListener("click",  function () { switchTab(true);  });
+            tabSignup.addEventListener("click", function () { switchTab(false); });
+            switchToSignup.addEventListener("click", function (e) {
+                e.preventDefault(); switchTab(false);
+            });
+            switchToLogin.addEventListener("click", function (e) {
+                e.preventDefault(); switchTab(true);
+            });
+
+            // ---------- LOGIN ----------
+
+            loginForm.addEventListener("submit", async function (e) {
+
+                e.preventDefault();
+
+                if (!loginForm.checkValidity()) {
+                    showMsg(loginMsg, "Please enter your email and password.", true);
+                    return;
+                }
+
+                var btn = document.getElementById("loginSubmitBtn");
+                setBusy(btn, true);
+
+                var email    = document.getElementById("loginEmail").value.trim();
+                var password = document.getElementById("loginPassword").value;
+
+                try {
+                    await fetch("/api/login", {
+                        method: "POST",
+                        credentials: "same-origin",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email: email, password: password })
+                    }).then(function (r) {
+                        return r.json().then(function (d) {
+                            if (!r.ok) throw new Error(d.error || "Login failed");
+                            return d;
+                        });
+                    });
+
+                    showMsg(loginMsg, "Logged in! Redirecting...", false);
+                    setTimeout(function () { window.location.href = "index.html"; }, 500);
+
+                } catch (err) {
+                    showMsg(loginMsg, err.message, true);
+                }
+
+                setBusy(btn, false);
+            });
+
+            // ---------- SIGNUP ----------
+
+            signupForm.addEventListener("submit", async function (e) {
+
+                e.preventDefault();
+
+                if (!signupForm.checkValidity()) {
+                    showMsg(signupMsg, "Please fill in all required fields.", true);
+                    return;
+                }
+
+                var btn = document.getElementById("signupSubmitBtn");
+                setBusy(btn, true);
+
+                var fullName = document.getElementById("signupName").value.trim();
+                var email    = document.getElementById("signupEmail").value.trim();
+                var phone    = document.getElementById("signupPhone").value.trim();
+                var password = document.getElementById("signupPassword").value;
+
+                try {
+                    await fetch("/api/signup", {
+                        method: "POST",
+                        credentials: "same-origin",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            full_name: fullName,
+                            email: email,
+                            phone: phone,
+                            password: password
+                        })
+                    }).then(function (r) {
+                        return r.json().then(function (d) {
+                            if (!r.ok) throw new Error(d.error || "Signup failed");
+                            return d;
+                        });
+                    });
+
+                    showMsg(signupMsg, "Account created! Redirecting...", false);
+                    setTimeout(function () { window.location.href = "index.html"; }, 500);
+
+                } catch (err) {
+                    showMsg(signupMsg, err.message, true);
+                }
+
+                setBusy(btn, false);
+            });
+
+            // If already logged in, go straight home
+            fetch("/api/me", { credentials: "same-origin" })
+                .then(function (r) {
+                    if (r.ok) window.location.href = "index.html";
+                })
+                .catch(function () { /* not logged in - stay on this page */ });
+
+        })();
+
+    </script>
+
+</body>
+
+</html>
