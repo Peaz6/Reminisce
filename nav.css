@@ -1,0 +1,114 @@
+/* ==========================================
+   SHARED TOP NAVIGATION - used on all pages
+========================================== */
+
+.top-nav {
+    height: 76px;
+
+    background: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 4%;
+
+    border-top: 4px solid #333;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: #171717;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    padding: 8px 4px;
+}
+
+.nav-links a:hover {
+    color: #b8860b;
+}
+
+.nav-links a.active {
+    color: #b8860b;
+    font-weight: 700;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.login-btn {
+    display: inline-block;
+
+    padding: 9px 22px;
+
+    border: 1px solid #171717;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #171717;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.login-btn:hover {
+    background: #171717;
+    color: #ffffff;
+}
+
+@media (max-width: 800px) {
+
+    .top-nav {
+        padding: 0 20px;
+        flex-wrap: wrap;
+        height: auto;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .nav-links {
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .nav-actions {
+        gap: 10px;
+    }
+
+}

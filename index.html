@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reminisce</title>
+
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- ==================================================
+         TOP NAVIGATION
+    ================================================== -->
+
+    <header class="top-nav">
+
+        <div class="logo">
+            Reminisce
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="index.html" class="active">Home</a>
+
+            <a href="Food/Food.html">Food</a>
+
+            <a href="Food/Buy.html">Order Now</a>
+
+            <a href="Food/Tutorial.html">Tutorial</a>
+
+            <a href="Food/AboutUs.html">About Us</a>
+
+        </nav>
+
+        <div class="nav-actions">
+
+            <a href="#" class="login-btn">Log In</a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==================================================
+         BURMESE-STYLE ILLUSTRATED BANNER
+    ================================================== -->
+
+    <header
+        class="banner-container"
+        id="heroBanner"
+        aria-label="Reminisce banner"
+    >
+
+        <img
+            class="banner-layer cloud"
+            src="Images/Cloud_cropped.png"
+            alt=""
+            aria-hidden="true"
+        >
+
+
+        <img
+            class="banner-layer instrument"
+            src="Images/burmese_instrument.png"
+            alt=""
+            aria-hidden="true"
+        >
+
+
+        <img
+            class="banner-layer dragon"
+            src="Images/Dragon.png"
+            alt=""
+            aria-hidden="true"
+        >
+
+
+        <img
+            class="banner-layer paduak-left"
+            src="Images/paduakL_cropped.png"
+            alt=""
+            aria-hidden="true"
+        >
+
+
+        <img
+            class="banner-layer paduak-right"
+            src="Images/paduakR_cropped.png"
+            alt=""
+            aria-hidden="true"
+        >
+
+
+        <div class="banner-text-overlay">
+
+            <h1>
+                Just like Home.
+            </h1>
+
+            <p>
+                Experience Burmese culture first hand from home!
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==================================================
+         MAIN WEBSITE CONTENT
+    ================================================== -->
+
+    <main class="culture-content">
+
+        <section
+            class="culture-section reverse"
+            id="food"
+        >
+
+            <div class="culture-image">
+
+                <img
+                    src="Images/sidedish.jpg"
+                    alt="Traditional Myanmar food"
+                >
+
+            </div>
+
+
+            <div class="culture-text">
+
+                <p class="section-label">
+                    TASTE OF MYANMAR
+                </p>
+
+                <h2>
+                    Traditional Food
+                </h2>
+
+                <p>
+                    Explore the flavors of Myanmar through
+                    traditional dishes, snacks, desserts and
+                    drinks enjoyed across different regions.
+                </p>
+
+                <a href="Food/Buy.html">
+                    Explore Food →
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRADITIONAL FOOD -->
+
+        
+
+    </main>
+
+
+
+    <!-- ==================================================
+         BLACK FOOTER
+    ================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-content">
+
+            <h2>
+                Contact Us.
+            </h2>
+
+            <p>
+                Phone Number: 099249245701
+            </p>
+
+            
+            <p>Our Email:</p>
+
+            <p>
+                <a href="mailto:reminiscefoodkit@gmail.com">reminiscefoodkit@gmail.com</a>
+            </p>
+
+            <p>
+                Discover the traditions, culture and heritage of Myanmar.
+            </p>
+
+
+            <div class="footer-links">
+
+                <a href="index.html">Home</a>
+
+                <a href="Food/Food.html">
+                    Food
+                </a>
+
+                <a href="Food/AboutUs.html">
+                    About Us
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- ==================================================
+         BANNER FADE SCRIPT
+    ================================================== -->
+
+    <script>
+
+        const banner =
+            document.getElementById("heroBanner");
+
+
+        function updateBannerFade() {
+
+            const scrollPosition =
+                window.scrollY;
+
+            const fadeDistance =
+                banner.offsetHeight * 0.75;
+
+
+            const opacity =
+                Math.max(
+                    0,
+                    1 - (scrollPosition / fadeDistance)
+                );
+
+
+            banner.style.opacity =
+                opacity;
+
+
+            banner.style.pointerEvents =
+                opacity === 0
+                    ? "none"
+                    : "auto";
+
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            updateBannerFade,
+            { passive: true }
+        );
+
+
+        updateBannerFade();
+
+    </script>
+
+
+</body>
+
+</html>

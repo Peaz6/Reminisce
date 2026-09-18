@@ -1,0 +1,456 @@
+/* ==========================================
+   GENERAL
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f6f0;
+    color: #171717;
+}
+
+
+
+/* ==========================================
+   ABOUT HERO
+========================================== */
+
+.about-hero {
+    text-align: center;
+
+    padding: 100px 20px 90px;
+
+    background: #f8f6f0;
+}
+
+.section-label {
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 20px;
+}
+
+.about-hero h1 {
+    font-family: Georgia, serif;
+
+    font-size: 58px;
+
+    line-height: 1.1;
+
+    margin-bottom: 30px;
+}
+
+.hero-description {
+    max-width: 650px;
+
+    margin: auto;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+}
+
+
+
+/* ==========================================
+   OUR STORY
+========================================== */
+
+.story {
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: 0 auto 100px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    background: #eeeadf;
+}
+
+.story-image {
+    min-height: 500px;
+}
+
+.story-image img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.story-text {
+    padding: 65px;
+}
+
+.story-text h2 {
+    font-family: Georgia, serif;
+
+    font-size: 42px;
+
+    margin-bottom: 30px;
+}
+
+.story-text p:not(.section-label) {
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    margin-bottom: 22px;
+}
+
+
+
+/* ==========================================
+   WHAT WE SHARE
+========================================== */
+
+.what-we-share {
+    background: #ffffff;
+
+    text-align: center;
+
+    padding: 90px 7%;
+}
+
+.what-we-share h2 {
+    font-family: Georgia, serif;
+
+    font-size: 42px;
+
+    margin-bottom: 25px;
+}
+
+.share-description {
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    max-width: 650px;
+
+    margin: 0 auto 55px;
+}
+
+
+
+/* ==========================================
+   CARDS
+========================================== */
+
+.share-grid {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+}
+
+.share-card {
+    background: #f5f2ea;
+
+    text-align: left;
+}
+
+.share-card img {
+    width: 100%;
+
+    height: 330px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.card-content {
+    padding: 35px;
+}
+
+.card-content h3 {
+    font-family: Georgia, serif;
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+.card-content p {
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+.card-content a {
+    color: #111;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    border-bottom: 1px solid #111;
+
+    padding-bottom: 7px;
+}
+
+
+
+/* ==========================================
+   OUR TEAM (PLACEHOLDER)
+========================================== */
+
+.team {
+    background: #f8f6f0;
+
+    text-align: center;
+
+    padding: 90px 7%;
+}
+
+.team h2 {
+    font-family: Georgia, serif;
+
+    font-size: 42px;
+
+    margin-bottom: 45px;
+}
+
+.team-grid {
+    max-width: 1000px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 30px;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.member-photo {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    margin-bottom: 18px;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.team-member h3 {
+    font-family: Georgia, serif;
+
+    font-size: 22px;
+
+    color: #171717;
+}
+
+
+
+/* ==========================================
+   CONTACT
+========================================== */
+
+.contact {
+    text-align: center;
+
+    background: #111111;
+
+    color: white;
+
+    padding: 80px 20px;
+}
+
+.contact h2 {
+    font-family: Georgia, serif;
+
+    font-size: 42px;
+
+    margin-bottom: 25px;
+}
+
+.contact p {
+    color: #dddddd;
+
+    font-size: 17px;
+
+    margin-bottom: 15px;
+}
+
+.contact a {
+    display: inline-block;
+
+    color: white;
+
+    text-decoration: none;
+
+    margin-top: 10px;
+
+    font-size: 17px;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+    background: #111111;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 0 20px 45px;
+}
+
+.footer-logo {
+    font-family: Georgia, serif;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+.footer p {
+    color: #cccccc;
+
+    margin-bottom: 25px;
+}
+
+.footer-links {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    margin-bottom: 30px;
+}
+
+.footer-links a {
+    color: white;
+
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer .copyright {
+    font-size: 13px;
+
+    color: #777;
+
+    margin: 0;
+}
+
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 800px) {
+
+    .top-nav {
+        padding: 0 20px;
+        flex-wrap: wrap;
+        height: auto;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .nav-links {
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .about-hero h1 {
+        font-size: 42px;
+    }
+
+    .story {
+        grid-template-columns: 1fr;
+    }
+
+    .story-image {
+        min-height: 350px;
+    }
+
+    .story-text {
+        padding: 40px 30px;
+    }
+
+    .share-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team {
+        padding: 60px 20px;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 25px;
+    }
+
+}
